@@ -314,7 +314,10 @@ handle_new_client (rfbClientPtr rfb_client)
                               prompt_response_callback,
                               session_vnc);
       grd_session_vnc_detach_source (session_vnc);
-      return RFB_CLIENT_ON_HOLD;
+
+      // XXX 20220809 Daike Yu: workaround authentication for experiment
+      // return RFB_CLIENT_ON_HOLD;
+      return RFB_CLIENT_ACCEPT;
     case GRD_VNC_AUTH_METHOD_PASSWORD:
       session_vnc->rfb_screen->passwordCheck = check_rfb_password;
       /*
